@@ -117,11 +117,12 @@ def actualizar_encuesta_endpoint(encuesta_id: str, payload: SurveyCreate) -> Sur
     return _serializar_encuesta(encuesta)
 
 
-@app.delete("/encuestas/{encuesta_id}", status_code=204)
-def eliminar_encuesta_endpoint(encuesta_id: str) -> None:
+@app.delete("/encuestas/{encuesta_id}", status_code=200)
+def eliminar_encuesta_endpoint(encuesta_id: str):
     eliminado = db.delete_survey(encuesta_id)
     if not eliminado:
         raise HTTPException(status_code=404, detail="Encuesta no encontrada")
+    return {"mensaje": "Encuesta eliminada correctamente"}
 
 
 @app.post("/encuestas/{encuesta_id}/respuestas", response_model=ResponseOut, status_code=201)
