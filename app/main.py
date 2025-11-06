@@ -18,10 +18,8 @@ from .schemas import (
 )
 from .services import actualizar_encuesta, calcular_estadisticas, crear_encuesta, registrar_respuesta
 
-# ✅ PRIMERO: Definir app
 app = FastAPI(title="Administración de Encuestas", version="1.0.0")
 
-# ✅ SEGUNDO: Configurar CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -30,10 +28,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ TERCERO: Montar archivos estáticos
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# ✅ CUARTO: Ruta raíz para servir el HTML
 @app.get("/", include_in_schema=False)
 async def root():
     return FileResponse("static/index.html")
