@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Encuestas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1a1a1a;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .header-subtitle {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .tabs {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0 2rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tab {
+            padding: 1rem 0;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        .tab-badge {
+            background: #e5e7eb;
+            color: #6b7280;
+            padding: 0.125rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+        }
+
+        .tab.active .tab-badge {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .surveys-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .survey-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s;
+        }
+
+        .survey-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .survey-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .survey-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .survey-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-orange {
+            background: #fed7aa;
+            color: #92400e;
+        }
+
+        .survey-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stat {
+            flex: 1;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .survey-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #374151;
+            transition: all 0.2s;
+        }
+
+        .btn-sm:hover {
+            background: #f9fafb;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .question-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .question-number {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-add {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px dashed #d1d5db;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #e5e7eb;
+            border-color: #9ca3af;
+        }
+
+        .btn-remove {
+            background: #fee2e2;
+            color: #991b1b;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .stat-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .icon-blue { background: #dbeafe; }
+        .icon-green { background: #d1fae5; }
+        .icon-purple { background: #e9d5ff; }
+        .icon-orange { background: #fed7aa; }
+
+        .chart-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            min-width: 150px;
+            font-size: 0.875rem;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 32px;
+            background: #f3f4f6;
+            border-radius: 0.375rem;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.5rem;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: width 0.3s;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <h1>Sistema de Encuestas</h1>
+            <div class="header-subtitle">Panel de Administración</div>
+        </div>
+        <button class="btn-primary" onclick="openCreateModal()">
+            <span>+</span> Nueva Encuesta
+        </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('surveys')">
+            📋 Mis Encuestas
+            <span class="tab-badge" id="surveysCount">0</span>
+        </div>
+        <div class="tab" onclick="switchTab('stats')">
+            📊 Estadísticas
+        </div>
+        <div class="tab" onclick="switchTab('config')">
+            ⚙️ Configuración
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Tab: Mis Encuestas -->
+        <div id="surveysTab" class="tab-content active">
+            <div id="surveysList" class="surveys-grid"></div>
+        </div>
+
+        <!-- Tab: Estadísticas -->
+        <div id="statsTab" class="tab-content">
+            <div id="statsContent"></div>
+        </div>
+
+        <!-- Tab: Configuración -->
+        <div id="configTab" class="tab-content">
+            <div class="chart-section">
+                <h2 class="chart-title">Configuración del Sistema</h2>
+                <p style="color: #6b7280;">API Endpoint: <code>http://127.0.0.1:8000</code></p>
+                <p style="color: #6b7280; margin-top: 1rem;">Estado del servidor: <span id="serverStatus">Verificando...</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Crear/Editar Encuesta -->
+    <div id="surveyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Nueva Encuesta</h2>
+                <button class="btn-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="surveyForm">
+                    <div class="form-group">
+                        <label class="form-label">Título</label>
+                        <input type="text" class="form-input" id="surveyTitle" placeholder="Evaluación Trimestral Q4" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tipo de encuesta</label>
+                            <select class="form-select" id="surveyType">
+                                <option value="opinion">Solo Opinión</option>
+                                <option value="quiz">Solo Evaluación</option>
+                                <option value="mixed">Mixta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Puntaje mínimo (%)</label>
+                            <input type="number" class="form-input" id="minScore" placeholder="70">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Intentos máximos</label>
+                            <input type="number" class="form-input" id="maxAttempts" placeholder="3">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tiempo límite (minutos)</label>
+                        <input type="number" class="form-input" id="timeLimit" placeholder="30">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Preguntas</label>
+                        <div id="questionsList"></div>
+                        <button type="button" class="btn-add" onclick="addQuestion()">+ Agregar pregunta</button>
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; margin-top: 2rem;">
+                        <button type="submit" class="btn-primary" style="flex: 1;">Guardar Encuesta</button>
+                        <button type="button" class="btn-sm" onclick="closeModal()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+        let surveys = [];
+        let editingSurveyId = null;
+        let questionCounter = 0;
+
+        // Inicializar
+        async function init() {
+            await loadSurveys();
+            checkServerStatus();
+        }
+
+        // Verificar estado del servidor
+        async function checkServerStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/encuestas`);
+                document.getElementById('serverStatus').innerHTML = 
+                    response.ok ? '✅ Conectado' : '⚠️ Error de conexión';
+            } catch (error) {
+                document.getElementById('serverStatus').innerHTML = '❌ Servidor no disponible';
+            }
+        }
+
+        // Cargar encuestas
+        async function loadSurveys() {
+            try {
+                const response = await fetch(`${API_BASE}/encuestas`);
+                surveys = await response.json();
+                renderSurveys();
+                document.getElementById('surveysCount').textContent = surveys.length;
+            } catch (error) {
+                console.error('Error loading surveys:', error);
+                document.getElementById('surveysList').innerHTML = 
+                    '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Error al cargar encuestas. Verifica que el servidor esté corriendo.</p></div>';
+            }
+        }
+
+        // Renderizar encuestas
+        function renderSurveys() {
+            const container = document.getElementById('surveysList');
+            
+            if (surveys.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📋</div>
+                        <p>No hay encuestas creadas</p>
+                        <button class="btn-primary" onclick="openCreateModal()" style="margin-top: 1rem;">
+                            Crear primera encuesta
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = surveys.map(survey => `
+                <div class="survey-card">
+                    <div class="survey-card-header">
+                        <div>
+                            <div class="survey-title">${survey.titulo}</div>
+                            <div class="survey-badges">
+                                <span class="badge ${
+                                    survey.tipo_encuesta === 'opinion' ? 'badge-blue' :
+                                    survey.tipo_encuesta === 'quiz' ? 'badge-green' : 'badge-orange'
+                                }">${formatType(survey.tipo_encuesta)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="survey-stats">
+                        <div class="stat">
+                            <div class="stat-label">Preguntas</div>
+                            <div class="stat-value">${survey.preguntas.length}</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Min. %</div>
+                            <div class="stat-value">${survey.puntaje_minimo || '-'}</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Tiempo</div>
+                            <div class="stat-value">${survey.tiempo_limite_minutos || '-'} min</div>
+                        </div>
+                    </div>
+                    <div class="survey-actions">
+                        <button class="btn-sm" onclick="viewStats('${survey.id}')">📊 Ver Estadísticas</button>
+                        <button class="btn-sm" onclick="editSurvey('${survey.id}')">✏️ Editar</button>
+                        <button class="btn-sm" onclick="deleteSurvey('${survey.id}')">🗑️ Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Cambiar tab
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
+        // Abrir modal de creación
+        function openCreateModal() {
+            editingSurveyId = null;
+            document.getElementById('modalTitle').textContent = 'Nueva Encuesta';
+            document.getElementById('surveyForm').reset();
+            document.getElementById('questionsList').innerHTML = '';
+            questionCounter = 0;
+            document.getElementById('surveyModal').classList.add('active');
+        }
+
+        // Editar encuesta
+        function editSurvey(id) {
+            const survey = surveys.find(s => s.id === id);
+            if (!survey) return;
+
+            editingSurveyId = id;
+            document.getElementById('modalTitle').textContent = 'Editar Encuesta';
+            document.getElementById('surveyTitle').value = survey.titulo;
+            document.getElementById('surveyType').value = survey.tipo_encuesta;
+            document.getElementById('minScore').value = survey.puntaje_minimo || '';
+            document.getElementById('maxAttempts').value = survey.intentos_maximos || '';
+            document.getElementById('timeLimit').value = survey.tiempo_limite_minutos || '';
+
+            document.getElementById('questionsList').innerHTML = '';
+            questionCounter = 0;
+            survey.preguntas.forEach(q => {
+                addQuestion(q);
+            });
+
+            document.getElementById('surveyModal').classList.add('active');
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('surveyModal').classList.remove('active');
+        }
+
+        // Agregar pregunta
+        function addQuestion(existingQuestion = null) {
+            const qNum = ++questionCounter;
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-item';
+            questionDiv.id = `question-${qNum}`;
+            
+            questionDiv.innerHTML = `
+                <div class="question-header">
+                    <span class="question-number">Pregunta ${qNum}</span>
+                    <button type="button" class="btn-remove" onclick="removeQuestion(${qNum})">Eliminar</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="¿Cuál es tu pregunta?" 
+                           value="${existingQuestion ? existingQuestion.texto : ''}" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <select class="form-select question-type" onchange="toggleOptions(${qNum})">
+                            <option value="multiple_choice" ${existingQuestion?.tipo === 'multiple_choice' ? 'selected' : ''}>Opción múltiple</option>
+                            <option value="multiselect" ${existingQuestion?.tipo === 'multiselect' ? 'selected' : ''}>Casillas múltiples</option>
+                            <option value="short_text" ${existingQuestion?.tipo === 'short_text' ? 'selected' : ''}>Respuesta corta</option>
+                            <option value="numeric_scale" ${existingQuestion?.tipo === 'numeric_scale' ? 'selected' : ''}>Escala numérica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-input" placeholder="Puntos" 
+                               value="${existingQuestion?.puntos || ''}">
+                    </div>
+                </div>
+                <div class="options-container" id="options-${qNum}" style="display: ${existingQuestion?.tipo === 'multiple_choice' || existingQuestion?.tipo === 'multiselect' ? 'block' : 'none'}">
+                    <div class="form-label" style="margin-top: 0.5rem;">Opciones:</div>
+                    <div id="options-list-${qNum}"></div>
+                    <button type="button" class="btn-add" onclick="addOption(${qNum})" style="margin-top: 0.5rem;">+ Agregar opción</button>
+                </div>
+            `;
+
+            document.getElementById('questionsList').appendChild(questionDiv);
+
+            if (existingQuestion && (existingQuestion.tipo === 'multiple_choice' || existingQuestion.tipo === 'multiselect')) {
+                existingQuestion.opciones.forEach(opt => {
+                    addOption(qNum, opt);
+                });
+            }
+        }
+
+        // Remover pregunta
+        function removeQuestion(qNum) {
+            document.getElementById(`question-${qNum}`).remove();
+        }
+
+        // Toggle opciones
+        function toggleOptions(qNum) {
+            const select = document.querySelector(`#question-${qNum} .question-type`);
+            const optionsDiv = document.getElementById(`options-${qNum}`);
+            optionsDiv.style.display = ['multiple_choice', 'multiselect'].includes(select.value) ? 'block' : 'none';
+        }
+
+        // Agregar opción
+        function addOption(qNum, existingOption = null) {
+            const optionsList = document.getElementById(`options-list-${qNum}`);
+            const optNum = optionsList.children.length + 1;
+            
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option-item';
+            optionDiv.innerHTML = `
+                <input type="checkbox" class="option-radio" ${existingOption?.es_correcta ? 'checked' : ''}>
+                <input type="text" class="form-input" placeholder="Opción ${optNum}" 
+                       value="${existingOption ? existingOption.texto : ''}" style="flex: 1;">
+                <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            optionsList.appendChild(optionDiv);
+        }
+
+        // Guardar encuesta
+        document.getElementById('surveyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                titulo: document.getElementById('surveyTitle').value,
+                tipo_encuesta: document.getElementById('surveyType').value,
+                puntaje_minimo: parseInt(document.getElementById('minScore').value) || null,
+                intentos_maximos: parseInt(document.getElementById('maxAttempts').value) || null,
+                tiempo_limite_minutos: parseInt(document.getElementById('timeLimit').value) || null,
+                preguntas: []
+            };
+
+            document.querySelectorAll('.question-item').forEach(qDiv => {
+                const qInputs = qDiv.querySelectorAll('.form-input');
+                const qSelect = qDiv.querySelector('.question-type');
+                const qPoints = qDiv.querySelectorAll('input[type="number"]')[0];
+                
+                const question = {
+                    texto: qInputs[0].value,
+                    tipo: qSelect.value,
+                    puntos: parseInt(qPoints?.value) || null,
+                    opciones: []
+                };
+
+                if (['multiple_choice', 'multiselect'].includes(qSelect.value)) {
+                    const optionsDiv = qDiv.querySelector('.options-container');
+                    optionsDiv.querySelectorAll('.option-item').forEach(optDiv => {
+                        question.opciones.push({
+                            texto: optDiv.querySelector('input[type="text"]').value,
+                            es_correcta: optDiv.querySelector('input[type="checkbox"]').checked
+                        });
+                    });
+                }
+
+                formData.preguntas.push(question);
+            });
+
+            try {
+                const url = editingSurveyId 
+                    ? `${API_BASE}/encuestas/${editingSurveyId}`
+                    : `${API_BASE}/encuestas`;
+                const method = editingSurveyId ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    closeModal();
+                    await loadSurveys();
+                    alert('Encuesta guardada exitosamente');
+                } else {
+                    alert('Error al guardar la encuesta');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error de conexión');
+            }
+        });
+
+        // Eliminar encuesta
+        async function deleteSurvey(id) {
+            if (!confirm('¿Estás seguro de eliminar esta encuesta?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/encuestas/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    await loadSurveys();
+                    alert('Encuesta eliminada');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al eliminar');
+            }
+        }
+
+        // Ver estadísticas
+        async function viewStats(id) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            tabs[1].classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('statsTab').classList.add('active');
+
+            const statsContent = document.getElementById('statsContent');
+            statsContent.innerHTML = '<div class="loading">Cargando estadísticas...</div>';
+
+            try {
+                const survey = surveys.find(s => s.id === id);
+                const response = await fetch(`${API_BASE}/encuestas/${id}/estadisticas`);
+                const stats = await response.json();
+
+                statsContent.innerHTML = `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">${survey.titulo}</h2>
+                        <p style="color: #6b7280;">Estadísticas en tiempo real</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-icon icon-blue">👥</div>
+                            <div class="stat-label">Participantes</div>
+                            <div class="stat-value">${stats.total_respuestas}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon icon-green">🏆</div>
+                            <div class="stat-label">Promedio</div>
+                            <div class="stat-value">${stats.puntaje_promedio ? Math.round(stats.puntaje_promedio) + '%' : '-'}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon icon-purple">✅</div>
+                            <div class="stat-label">Aprobados</div>
+                            <div class="stat-value">${stats.tasa_aprobacion ? Math.round(stats.tasa_aprobacion) + '%' : '-'}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon icon-orange">⏱️</div>
+                            <div class="stat-label">Tiempo promedio</div>
+                            <div class="stat-value">${stats.duracion_promedio ? Math.round(stats.duracion_promedio) + ' min' : '-'}</div>
+                        </div>
+                    </div>
+
+                    ${stats.dificultad_preguntas.length > 0 ? `
+                        <div class="chart-section">
+                            <h3 class="chart-title">Preguntas Más Difíciles</h3>
+                            <div class="bar-chart">
+                                ${stats.dificultad_preguntas.slice(0, 5).map(([question, difficulty]) => `
+                                    <div class="bar-item">
+                                        <div class="bar-label">${question.substring(0, 30)}${question.length > 30 ? '...' : ''}</div>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: ${Math.min(100, difficulty)}%">
+                                                ${Math.round(difficulty)}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    ${stats.puntajes_por_usuario.length > 0 ? `
+                        <div class="chart-section">
+                            <h3 class="chart-title">Top Usuarios</h3>
+                            <div class="bar-chart">
+                                ${stats.puntajes_por_usuario.slice(0, 10).map(([user, score]) => `
+                                    <div class="bar-item">
+                                        <div class="bar-label">${user}</div>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: ${score}%; background: linear-gradient(90deg, #10b981, #059669);">
+                                                ${Math.round(score)}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <button class="btn-sm" onclick="loadSurveys(); switchTab('surveys');" style="margin-top: 1rem;">
+                        ← Volver a encuestas
+                    </button>
+                `;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                statsContent.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <p>No hay estadísticas disponibles aún</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Formatear tipo de encuesta
+        function formatType(type) {
+            const types = {
+                'opinion': 'Opinión',
+                'quiz': 'Evaluación',
+                'mixed': 'Mixta'
+            };
+            return types[type] || type;
+        }
+
+        // Inicializar al cargar
+        init();
