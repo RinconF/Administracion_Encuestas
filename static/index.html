@@ -781,20 +781,42 @@
             optionsDiv.style.display = ['multiple_choice', 'multiselect'].includes(select.value) ? 'block' : 'none';
         }
 
+        const VARIANTES_OTRO = new Set(['otro', 'otra', 'otroa', 'otros', 'otras']);
+
+        function normalizarTextoOpcion(valor) {
+            const texto = (valor || '').trim();
+            if (!texto) {
+                return '';
+            }
+
+            const sinAcentos = texto
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase();
+            const simplificado = sinAcentos.replace(/[\s¿?():]/g, '');
+
+            if (VARIANTES_OTRO.has(simplificado)) {
+                return 'Otro(a): ¿Cuál?';
+            }
+
+            return texto;
+        }
+
         // Agregar opción
         function addOption(qNum, existingOption = null) {
             const optionsList = document.getElementById(`options-list-${qNum}`);
             const optNum = optionsList.children.length + 1;
-            
+
             const optionDiv = document.createElement('div');
             optionDiv.className = 'option-item';
             optionDiv.innerHTML = `
                 <input type="checkbox" class="option-radio" ${existingOption?.es_correcta ? 'checked' : ''}>
-                <input type="text" class="form-input" placeholder="Opción ${optNum}" 
-                       value="${existingOption ? existingOption.texto : ''}" style="flex: 1;">
+                <input type="text" class="form-input" placeholder="Opción ${optNum}"
+                       value="${existingOption ? existingOption.texto : ''}" style="flex: 1;"
+                       onblur="this.value = normalizarTextoOpcion(this.value);">
                 <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
             `;
-            
+
             optionsList.appendChild(optionDiv);
         }
 
@@ -829,7 +851,7 @@
                     const optionsDiv = qDiv.querySelector('.options-container');
                     optionsDiv.querySelectorAll('.option-item').forEach(optDiv => {
                         question.opciones.push({
-                            texto: optDiv.querySelector('input[type="text"]').value,
+                            texto: normalizarTextoOpcion(optDiv.querySelector('input[type="text"]').value),
                             es_correcta: optDiv.querySelector('input[type="checkbox"]').checked
                         });
                     });
