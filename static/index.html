@@ -24,6 +24,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .header h1 {
@@ -35,6 +36,43 @@
             color: #6b7280;
             font-size: 0.875rem;
             margin-top: 0.25rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            align-items: center;
+            background: #f3f4f6;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .toggle-btn {
+            border: none;
+            background: transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            color: #374151;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            color: #2563eb;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+            color: #2563eb;
         }
 
         .btn-primary {
@@ -54,6 +92,14 @@
 
         .btn-primary:hover {
             background: #1d4ed8;
+        }
+
+        .view-content {
+            display: none;
+        }
+
+        .view-content.active {
+            display: block;
         }
 
         .tabs {
@@ -98,6 +144,146 @@
             padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .user-container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+        }
+
+        .user-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .user-card p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .user-header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-meta {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .user-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .user-question.error {
+            border-left: 4px solid #ef4444;
+            padding-left: 0.75rem;
+        }
+
+        .user-question label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-hint {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .error-message {
+            color: #b91c1c;
+            font-size: 0.8125rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .input-error {
+            border-color: #ef4444 !important;
+            background: #fef2f2;
+        }
+
+        .option-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: #f9fafb;
+        }
+
+        .option-user input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .survey-feedback {
+            margin-top: 1rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .survey-feedback.ok {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .survey-feedback.error {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        .intranet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .intranet-tile {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            background: #f9fafb;
+        }
+
+        .intranet-tile strong {
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .tab-content {
@@ -523,38 +709,107 @@
     <div class="header">
         <div>
             <h1>Sistema de Encuestas</h1>
-            <div class="header-subtitle">Panel de Administración</div>
+            <div class="header-subtitle" id="headerSubtitle">Panel de Administración</div>
         </div>
-        <button class="btn-primary" onclick="openCreateModal()">
-            <span>+</span> Nueva Encuesta
-        </button>
-    </div>
-
-    <!-- Tabs -->
-    <div class="tabs">
-        <div class="tab active" data-tab="surveys" onclick="switchTab('surveys', event)">
-            📋 Mis Encuestas
-            <span class="tab-badge" id="surveysCount">0</span>
-        </div>
-        <div class="tab" data-tab="stats" onclick="switchTab('stats', event)">
-            📊 Estadísticas
-        </div>
-        <div class="tab" data-tab="config" onclick="switchTab('config', event)">
-            ⚙️ Configuración
+        <div class="header-actions">
+            <div class="view-toggle">
+                <button class="toggle-btn active" data-view="admin" onclick="switchView('admin', event)">Administrador</button>
+                <button class="toggle-btn" data-view="user" onclick="switchView('user', event)">Usuario</button>
+            </div>
+            <button class="btn-primary" id="newSurveyBtn" onclick="openCreateModal()">
+                <span>+</span> Nueva Encuesta
+            </button>
         </div>
     </div>
 
-    <!-- Content -->
-    <div class="content">
-        <!-- Tab: Mis Encuestas -->
-        <div id="surveysTab" class="tab-content active">
-            <div id="surveysList" class="surveys-grid"></div>
+    <div id="adminView" class="view-content active">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="surveys" onclick="switchTab('surveys', event)">
+                📋 Mis Encuestas
+                <span class="tab-badge" id="surveysCount">0</span>
+            </div>
+            <div class="tab" data-tab="stats" onclick="switchTab('stats', event)">
+                📊 Estadísticas
+            </div>
+            <div class="tab" data-tab="config" onclick="switchTab('config', event)">
+                ⚙️ Configuración
+            </div>
         </div>
 
-        <!-- Tab: Estadísticas -->
-        <div id="statsTab" class="tab-content">
-            <div id="statsContent"></div>
+        <!-- Content -->
+        <div class="content">
+            <!-- Tab: Mis Encuestas -->
+            <div id="surveysTab" class="tab-content active">
+                <div id="surveysList" class="surveys-grid"></div>
+            </div>
+
+            <!-- Tab: Estadísticas -->
+            <div id="statsTab" class="tab-content">
+                <div id="statsContent"></div>
+            </div>
+
+            <!-- Tab: Configuración -->
+            <div id="configTab" class="tab-content">
+                <div class="config-card">
+                    <h3>Almacenamiento local</h3>
+                    <p style="color: #6b7280;">
+                        Las encuestas se guardan automáticamente en tu navegador mediante <code>localStorage</code>. No se realizan
+                        peticiones a servidores ni APIs externas.
+                    </p>
+                    <div id="storageStatus" style="color: #4b5563; margin-top: 1rem;"></div>
+                    <div class="config-actions">
+                        <button class="btn-sm" onclick="exportData()">⬇️ Exportar datos</button>
+                        <button class="btn-sm" onclick="importData()">⬆️ Importar datos</button>
+                        <button class="btn-sm" onclick="resetData()">♻️ Restablecer datos de ejemplo</button>
+                        <button class="btn-sm" onclick="clearAllData()" style="color: #b91c1c; border-color: #fecaca;">🗑️ Borrar todo</button>
+                    </div>
+                </div>
+                <div class="config-card">
+                    <h3>Validaciones disponibles</h3>
+                    <ul id="validationsList" style="list-style: disc; padding-left: 1.25rem; color: #4b5563;"></ul>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div id="userView" class="view-content">
+        <div class="user-container">
+            <div id="userLoginCard" class="user-card">
+                <h2>Portal de colaboradores</h2>
+                <p>Inicia sesión con tus credenciales corporativas para responder las encuestas pendientes antes de ingresar a la intranet.</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label" for="loginEmail">Correo electrónico</label>
+                        <input type="email" class="form-input" id="loginEmail" placeholder="nombre@empresa.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">Contraseña</label>
+                        <input type="password" class="form-input" id="loginPassword" placeholder="••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Ingresar</button>
+                    <div class="error-message" id="loginError"></div>
+                </form>
+            </div>
+
+            <div id="userDashboard" style="display: none;">
+                <div class="user-card">
+                    <div class="user-header">
+                        <div>
+                            <div class="user-header-title">Hola, <span id="userName"></span></div>
+                            <div class="user-meta" id="userPendingInfo"></div>
+                        </div>
+                        <button type="button" class="btn-sm" onclick="logoutUser()">Cerrar sesión</button>
+                    </div>
+                    <p>Por políticas internas, debes responder tu encuesta asignada antes de acceder a los recursos de la intranet.</p>
+                </div>
+
+                <div class="user-card" id="userSurveySection" style="display: none;">
+                    <h2 id="userSurveyTitle"></h2>
+                    <p id="userSurveyIntro"></p>
+                    <div id="userSurveyContent"></div>
+                    <div class="survey-feedback" id="userSurveyFeedback"></div>
+                </div>
 
         <!-- Tab: Configuración -->
         <div id="configTab" class="tab-content">
@@ -677,6 +932,8 @@
         };
 
         let surveys = [];
+        let users = [];
+        let currentUserId = null;
         let editingSurveyId = null;
         let questionCounter = 0;
 
