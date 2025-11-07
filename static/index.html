@@ -24,6 +24,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .header h1 {
@@ -35,6 +36,43 @@
             color: #6b7280;
             font-size: 0.875rem;
             margin-top: 0.25rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            align-items: center;
+            background: #f3f4f6;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .toggle-btn {
+            border: none;
+            background: transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            color: #374151;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            color: #2563eb;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+            color: #2563eb;
         }
 
         .btn-primary {
@@ -54,6 +92,14 @@
 
         .btn-primary:hover {
             background: #1d4ed8;
+        }
+
+        .view-content {
+            display: none;
+        }
+
+        .view-content.active {
+            display: block;
         }
 
         .tabs {
@@ -98,6 +144,146 @@
             padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .user-container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+        }
+
+        .user-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .user-card p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .user-header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-meta {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .user-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .user-question.error {
+            border-left: 4px solid #ef4444;
+            padding-left: 0.75rem;
+        }
+
+        .user-question label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-hint {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .error-message {
+            color: #b91c1c;
+            font-size: 0.8125rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .input-error {
+            border-color: #ef4444 !important;
+            background: #fef2f2;
+        }
+
+        .option-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: #f9fafb;
+        }
+
+        .option-user input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .survey-feedback {
+            margin-top: 1rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .survey-feedback.ok {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .survey-feedback.error {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        .intranet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .intranet-tile {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            background: #f9fafb;
+        }
+
+        .intranet-tile strong {
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .tab-content {
@@ -471,6 +657,51 @@
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
+
+        .validation-hint {
+            font-size: 0.75rem;
+            color: #4b5563;
+            background: #f3f4f6;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .validation-result {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: #6b7280;
+        }
+
+        .validation-result.ok {
+            color: #047857;
+        }
+
+        .validation-result.error {
+            color: #b91c1c;
+        }
+
+        .config-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .config-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .config-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -478,45 +709,126 @@
     <div class="header">
         <div>
             <h1>Sistema de Encuestas</h1>
-            <div class="header-subtitle">Panel de Administración</div>
+            <div class="header-subtitle" id="headerSubtitle">Panel de Administración</div>
         </div>
-        <button class="btn-primary" onclick="openCreateModal()">
-            <span>+</span> Nueva Encuesta
-        </button>
-    </div>
-
-    <!-- Tabs -->
-    <div class="tabs">
-        <div class="tab active" data-tab="surveys" onclick="switchTab('surveys', event)">
-            📋 Mis Encuestas
-            <span class="tab-badge" id="surveysCount">0</span>
-        </div>
-        <div class="tab" data-tab="stats" onclick="switchTab('stats', event)">
-            📊 Estadísticas
-        </div>
-        <div class="tab" data-tab="config" onclick="switchTab('config', event)">
-            ⚙️ Configuración
+        <div class="header-actions">
+            <div class="view-toggle">
+                <button class="toggle-btn active" data-view="admin" onclick="switchView('admin', event)">Administrador</button>
+                <button class="toggle-btn" data-view="user" onclick="switchView('user', event)">Usuario</button>
+            </div>
+            <button class="btn-primary" id="newSurveyBtn" onclick="openCreateModal()">
+                <span>+</span> Nueva Encuesta
+            </button>
         </div>
     </div>
 
-    <!-- Content -->
-    <div class="content">
-        <!-- Tab: Mis Encuestas -->
-        <div id="surveysTab" class="tab-content active">
-            <div id="surveysList" class="surveys-grid"></div>
+    <div id="adminView" class="view-content active">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="surveys" onclick="switchTab('surveys', event)">
+                📋 Mis Encuestas
+                <span class="tab-badge" id="surveysCount">0</span>
+            </div>
+            <div class="tab" data-tab="stats" onclick="switchTab('stats', event)">
+                📊 Estadísticas
+            </div>
+            <div class="tab" data-tab="config" onclick="switchTab('config', event)">
+                ⚙️ Configuración
+            </div>
         </div>
 
-        <!-- Tab: Estadísticas -->
-        <div id="statsTab" class="tab-content">
-            <div id="statsContent"></div>
-        </div>
+        <!-- Content -->
+        <div class="content">
+            <!-- Tab: Mis Encuestas -->
+            <div id="surveysTab" class="tab-content active">
+                <div id="surveysList" class="surveys-grid"></div>
+            </div>
 
-        <!-- Tab: Configuración -->
-        <div id="configTab" class="tab-content">
-            <div class="chart-section">
-                <h2 class="chart-title">Configuración del Sistema</h2>
-                <p style="color: #6b7280;">API Endpoint: <code id="apiBaseDisplay"></code></p>
-                <p style="color: #6b7280; margin-top: 1rem;">Estado del servidor: <span id="serverStatus">Verificando...</span></p>
+            <!-- Tab: Estadísticas -->
+            <div id="statsTab" class="tab-content">
+                <div id="statsContent"></div>
+            </div>
+
+            <!-- Tab: Configuración -->
+            <div id="configTab" class="tab-content">
+                <div class="config-card">
+                    <h3>Almacenamiento local</h3>
+                    <p style="color: #6b7280;">
+                        Las encuestas se guardan automáticamente en tu navegador mediante <code>localStorage</code>. No se realizan
+                        peticiones a servidores ni APIs externas.
+                    </p>
+                    <div id="storageStatus" style="color: #4b5563; margin-top: 1rem;"></div>
+                    <div class="config-actions">
+                        <button class="btn-sm" onclick="exportData()">⬇️ Exportar datos</button>
+                        <button class="btn-sm" onclick="importData()">⬆️ Importar datos</button>
+                        <button class="btn-sm" onclick="resetData()">♻️ Restablecer datos de ejemplo</button>
+                        <button class="btn-sm" onclick="clearAllData()" style="color: #b91c1c; border-color: #fecaca;">🗑️ Borrar todo</button>
+                    </div>
+                </div>
+                <div class="config-card">
+                    <h3>Validaciones disponibles</h3>
+                    <ul id="validationsList" style="list-style: disc; padding-left: 1.25rem; color: #4b5563;"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="userView" class="view-content">
+        <div class="user-container">
+            <div id="userLoginCard" class="user-card">
+                <h2>Portal de colaboradores</h2>
+                <p>Inicia sesión con tus credenciales corporativas para responder las encuestas pendientes antes de ingresar a la intranet.</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label" for="loginEmail">Correo electrónico</label>
+                        <input type="email" class="form-input" id="loginEmail" placeholder="nombre@empresa.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">Contraseña</label>
+                        <input type="password" class="form-input" id="loginPassword" placeholder="••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Ingresar</button>
+                    <div class="error-message" id="loginError"></div>
+                </form>
+            </div>
+
+            <div id="userDashboard" style="display: none;">
+                <div class="user-card">
+                    <div class="user-header">
+                        <div>
+                            <div class="user-header-title">Hola, <span id="userName"></span></div>
+                            <div class="user-meta" id="userPendingInfo"></div>
+                        </div>
+                        <button type="button" class="btn-sm" onclick="logoutUser()">Cerrar sesión</button>
+                    </div>
+                    <p>Por políticas internas, debes responder tu encuesta asignada antes de acceder a los recursos de la intranet.</p>
+                </div>
+
+                <div class="user-card" id="userSurveySection" style="display: none;">
+                    <h2 id="userSurveyTitle"></h2>
+                    <p id="userSurveyIntro"></p>
+                    <div id="userSurveyContent"></div>
+                    <div class="survey-feedback" id="userSurveyFeedback"></div>
+                </div>
+
+                <div class="user-card" id="userIntranetSection" style="display: none;">
+                    <h2>Intranet corporativa</h2>
+                    <p>¡Gracias por completar la encuesta! Ahora puedes navegar libremente por la intranet y acceder a tus recursos.</p>
+                    <div class="intranet-grid">
+                        <div class="intranet-tile">
+                            <strong>📚 Biblioteca de políticas</strong>
+                            Consulta manuales, reglamentos y guías actualizadas para todos los colaboradores.
+                        </div>
+                        <div class="intranet-tile">
+                            <strong>🗓️ Calendario institucional</strong>
+                            Mantente al día con eventos, capacitaciones y anuncios importantes del mes.
+                        </div>
+                        <div class="intranet-tile">
+                            <strong>💬 Mesa de ayuda</strong>
+                            Crea tickets para soporte técnico, recursos humanos o solicitudes administrativas.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -575,53 +887,288 @@
     </div>
 
     <script>
-        const rawOrigin = window.location.origin;
-        const API_BASE = rawOrigin && rawOrigin !== 'null' ? rawOrigin : '';
+        const STORAGE_KEY = 'encuestas_admin_local_v1';
+        const USERS_STORAGE_KEY = 'encuestas_usuarios_local_v1';
+        const CURRENT_USER_KEY = 'encuestas_usuario_activo';
 
-        const apiDisplay = document.getElementById('apiBaseDisplay');
-        if (apiDisplay) {
-            apiDisplay.textContent = API_BASE || 'Mismo origen (/encuestas)';
-        }
+        const VALIDATION_RULES = {
+            libre: {
+                label: 'Texto libre',
+                hint: 'Acepta cualquier respuesta corta sin restricciones adicionales.',
+                example: 'Ej. Comentario breve',
+                validate: () => true
+            },
+            cedula: {
+                label: 'Número de cédula',
+                hint: 'Obliga a ingresar solo números con 8 a 10 dígitos consecutivos (puedes ajustar la longitud según tu país).',
+                example: 'Ej. 0912345678',
+                validate: (value) => /^\d{8,10}$/.test(value.trim())
+            },
+            telefono: {
+                label: 'Teléfono',
+                hint: 'Admite números nacionales o internacionales (10 a 15 dígitos) con prefijo opcional +.',
+                example: 'Ej. +593991234567',
+                validate: (value) => /^\+?\d{10,15}$/.test(value.trim())
+            },
+            fecha: {
+                label: 'Fecha (AAAA-MM-DD)',
+                hint: 'Requiere el formato ISO 8601 y valida que la fecha exista en el calendario.',
+                example: 'Ej. 2024-05-30',
+                validate: (value) => {
+                    const trimmed = value.trim();
+                    if (!/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+                        return false;
+                    }
+                    const date = new Date(trimmed);
+                    const [year, month, day] = trimmed.split('-').map(Number);
+                    return date.getUTCFullYear() === year && (date.getUTCMonth() + 1) === month && date.getUTCDate() === day;
+                }
+            },
+            correo: {
+                label: 'Correo electrónico',
+                hint: 'Verifica que exista un usuario, una arroba y un dominio con extensión válida.',
+                example: 'Ej. nombre@empresa.com',
+                validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim().toLowerCase())
+            }
+        };
+
+        const NUMERIC_SCALE_DEFAULT = { min: 0, max: 10 };
 
         let surveys = [];
+        let users = [];
+        let currentUserId = null;
         let editingSurveyId = null;
         let questionCounter = 0;
 
-        // Inicializar
-        async function init() {
-            await loadSurveys();
-            checkServerStatus();
+        function generateId(prefix = 'id') {
+            const random = typeof crypto !== 'undefined' && crypto.randomUUID
+                ? crypto.randomUUID()
+                : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+            return `${prefix}-${random}`;
         }
 
-        // Verificar estado del servidor
-        async function checkServerStatus() {
+        function getDefaultData() {
+            const now = new Date().toISOString();
+            return [
+                {
+                    id: generateId('encuesta'),
+                    titulo: 'Encuesta de satisfacción interna',
+                    tipo_encuesta: 'mixed',
+                    puntaje_minimo: 70,
+                    intentos_maximos: 2,
+                    tiempo_limite_minutos: 20,
+                    creado_en: now,
+                    actualizado_en: now,
+                    preguntas: [
+                        {
+                            id: generateId('pregunta'),
+                            texto: '¿Cuál es tu correo de contacto?',
+                            tipo: 'short_text',
+                            puntos: null,
+                            permitir_multiple: false,
+                            validacion: 'correo',
+                            opciones: []
+                        },
+                        {
+                            id: generateId('pregunta'),
+                            texto: 'Califica tu satisfacción general',
+                            tipo: 'numeric_scale',
+                            puntos: null,
+                            permitir_multiple: false,
+                            opciones: []
+                        },
+                        {
+                            id: generateId('pregunta'),
+                            texto: 'Selecciona los beneficios que más utilizas',
+                            tipo: 'multiselect',
+                            puntos: 10,
+                            permitir_multiple: true,
+                            opciones: [
+                                { id: generateId('opcion'), texto: 'Seguro médico', es_correcta: false },
+                                { id: generateId('opcion'), texto: 'Capacitaciones internas', es_correcta: false },
+                                { id: generateId('opcion'), texto: 'Trabajo remoto', es_correcta: false },
+                                { id: generateId('opcion'), texto: 'Otro(a): ¿Cuál?', es_correcta: false }
+                            ]
+                        }
+                    ],
+                    respuestas: []
+                }
+            ];
+        }
+
+        function getDefaultUsers() {
+            return [
+                {
+                    id: generateId('usuario'),
+                    nombre: 'Ana Martínez',
+                    correo: 'ana@empresa.com',
+                    contrasena: '123456',
+                    encuestasAsignadas: [],
+                    encuestasCompletadas: {}
+                }
+            ];
+        }
+
+        function init() {
+            loadSurveys();
+            loadUsers();
+            ensureUserAssignments();
+            renderSurveys();
+            populateValidationsList();
+            updateStorageStatus();
+            renderUserDashboard();
+
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+
+            switchView(currentUserId ? 'user' : 'admin');
+        }
+
+        function loadSurveys() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) {
+                surveys = getDefaultData();
+                persistSurveys();
+                return;
+            }
+
             try {
-                const response = await fetch(`${API_BASE}/encuestas`);
-                document.getElementById('serverStatus').innerHTML = 
-                    response.ok ? '✅ Conectado' : '⚠️ Error de conexión';
+                const parsed = JSON.parse(stored);
+                surveys = Array.isArray(parsed) ? parsed : getDefaultData();
+                surveys.forEach(survey => {
+                    if (!Array.isArray(survey.respuestas)) {
+                        survey.respuestas = [];
+                    }
+                });
             } catch (error) {
-                document.getElementById('serverStatus').innerHTML = '❌ Servidor no disponible';
+                console.warn('No se pudieron leer las encuestas guardadas. Se restaurará el ejemplo.', error);
+                surveys = getDefaultData();
+                persistSurveys();
+            }
+
+            updateSurveyCount();
+        }
+
+        function loadUsers() {
+            const stored = localStorage.getItem(USERS_STORAGE_KEY);
+            if (!stored) {
+                users = getDefaultUsers();
+                persistUsers();
+            } else {
+                try {
+                    const parsed = JSON.parse(stored);
+                    users = Array.isArray(parsed) ? parsed : getDefaultUsers();
+                } catch (error) {
+                    console.warn('No se pudieron leer los usuarios guardados. Se restaurará el ejemplo.', error);
+                    users = getDefaultUsers();
+                    persistUsers();
+                }
+            }
+
+            const storedCurrent = localStorage.getItem(CURRENT_USER_KEY);
+            currentUserId = storedCurrent || null;
+
+            if (currentUserId && !users.some(user => user.id === currentUserId)) {
+                setCurrentUser(null);
             }
         }
 
-        // Cargar encuestas
-        async function loadSurveys() {
-            try {
-                const response = await fetch(`${API_BASE}/encuestas`);
-                surveys = await response.json();
-                renderSurveys();
-                document.getElementById('surveysCount').textContent = surveys.length;
-            } catch (error) {
-                console.error('Error loading surveys:', error);
-                document.getElementById('surveysList').innerHTML = 
-                    '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Error al cargar encuestas. Verifica que el servidor esté corriendo.</p></div>';
+        function persistUsers() {
+            localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+        }
+
+        function setCurrentUser(userId) {
+            currentUserId = userId;
+            if (userId) {
+                localStorage.setItem(CURRENT_USER_KEY, userId);
+            } else {
+                localStorage.removeItem(CURRENT_USER_KEY);
             }
         }
 
-        // Renderizar encuestas
+        function getCurrentUser() {
+            if (!currentUserId) return null;
+            return users.find(user => user.id === currentUserId) || null;
+        }
+
+        function ensureUserAssignments() {
+            if (!users.length) return;
+
+            const availableSurveyIds = surveys.map(survey => survey.id);
+            let updated = false;
+
+            users.forEach(user => {
+                if (!Array.isArray(user.encuestasAsignadas)) {
+                    user.encuestasAsignadas = [];
+                    updated = true;
+                }
+
+                if (typeof user.encuestasCompletadas !== 'object' || user.encuestasCompletadas === null) {
+                    user.encuestasCompletadas = {};
+                    updated = true;
+                }
+
+                const asignadas = new Set(
+                    user.encuestasAsignadas.filter(id => availableSurveyIds.includes(id))
+                );
+
+                availableSurveyIds.forEach(id => {
+                    if (!asignadas.has(id)) {
+                        asignadas.add(id);
+                        updated = true;
+                    }
+                });
+
+                if (!asignadas.size && surveys.length) {
+                    asignadas.add(surveys[0].id);
+                    updated = true;
+                }
+
+                user.encuestasAsignadas = Array.from(asignadas);
+            });
+
+            if (updated) {
+                persistUsers();
+            }
+        }
+
+        function persistSurveys() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(surveys));
+            updateSurveyCount();
+            updateStorageStatus();
+            ensureUserAssignments();
+            renderUserDashboard();
+        }
+
+        function updateSurveyCount() {
+            document.getElementById('surveysCount').textContent = surveys.length;
+        }
+
+        function updateStorageStatus() {
+            const status = document.getElementById('storageStatus');
+            if (!status) return;
+
+            const surveysRaw = JSON.stringify(surveys);
+            const surveysSizeKb = surveysRaw ? (new Blob([surveysRaw]).size / 1024) : 0;
+            const usersRaw = JSON.stringify(users);
+            const usersSizeKb = usersRaw ? (new Blob([usersRaw]).size / 1024) : 0;
+
+            status.textContent = `Encuestas guardadas: ${surveys.length} (${surveysSizeKb.toFixed(2)} KB). Usuarios registrados: ${users.length} (${usersSizeKb.toFixed(2)} KB).`;
+        }
+
+        function populateValidationsList() {
+            const list = document.getElementById('validationsList');
+            if (!list) return;
+            list.innerHTML = Object.entries(VALIDATION_RULES).map(([key, rule]) => `
+                <li><strong>${rule.label}:</strong> ${rule.hint} <em>(${rule.example})</em></li>
+            `).join('');
+        }
+
         function renderSurveys() {
             const container = document.getElementById('surveysList');
-            
+
             if (surveys.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -635,43 +1182,449 @@
                 return;
             }
 
-            container.innerHTML = surveys.map(survey => `
-                <div class="survey-card">
-                    <div class="survey-card-header">
-                        <div>
-                            <div class="survey-title">${survey.titulo}</div>
-                            <div class="survey-badges">
-                                <span class="badge ${
-                                    survey.tipo_encuesta === 'opinion' ? 'badge-blue' :
-                                    survey.tipo_encuesta === 'quiz' ? 'badge-green' : 'badge-orange'
-                                }">${formatType(survey.tipo_encuesta)}</span>
+            container.innerHTML = surveys.map(survey => {
+                const shortTextValidations = survey.preguntas.filter(q => q.tipo === 'short_text' && q.validacion);
+                const totalRespuestas = Array.isArray(survey.respuestas) ? survey.respuestas.length : 0;
+                let updatedAt = '';
+                if (survey.actualizado_en) {
+                    const parsedDate = new Date(survey.actualizado_en);
+                    if (!Number.isNaN(parsedDate.getTime())) {
+                        updatedAt = parsedDate.toLocaleString();
+                    }
+                }
+
+                return `
+                    <div class="survey-card">
+                        <div class="survey-card-header">
+                            <div>
+                                <div class="survey-title">${survey.titulo}</div>
+                                <div class="survey-badges">
+                                    <span class="badge ${
+                                        survey.tipo_encuesta === 'opinion' ? 'badge-blue' :
+                                        survey.tipo_encuesta === 'quiz' ? 'badge-green' : 'badge-orange'
+                                    }">${formatType(survey.tipo_encuesta)}</span>
+                                    ${updatedAt ? `<span class="badge badge-blue">Actualizada ${updatedAt}</span>` : ''}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="survey-stats">
-                        <div class="stat">
-                            <div class="stat-label">Preguntas</div>
-                            <div class="stat-value">${survey.preguntas.length}</div>
+                        <div class="survey-stats">
+                            <div class="stat">
+                                <div class="stat-label">Preguntas</div>
+                                <div class="stat-value">${survey.preguntas.length}</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Respuestas</div>
+                                <div class="stat-value">${totalRespuestas}</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Validaciones</div>
+                                <div class="stat-value">${shortTextValidations.length}</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Tiempo</div>
+                                <div class="stat-value">${survey.tiempo_limite_minutos ? survey.tiempo_limite_minutos + ' min' : 'Sin límite'}</div>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-label">Min. %</div>
-                            <div class="stat-value">${survey.puntaje_minimo || '-'}</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-label">Tiempo</div>
-                            <div class="stat-value">${survey.tiempo_limite_minutos || '-'} min</div>
+                        <div class="survey-actions">
+                            <button class="btn-sm" onclick="viewStats('${survey.id}')">📊 Ver resumen</button>
+                            <button class="btn-sm" onclick="editSurvey('${survey.id}')">✏️ Editar</button>
+                            <button class="btn-sm" onclick="deleteSurvey('${survey.id}')">🗑️ Eliminar</button>
                         </div>
                     </div>
-                    <div class="survey-actions">
-                        <button class="btn-sm" onclick="viewStats('${survey.id}')">📊 Ver Estadísticas</button>
-                        <button class="btn-sm" onclick="editSurvey('${survey.id}')">✏️ Editar</button>
-                        <button class="btn-sm" onclick="deleteSurvey('${survey.id}')">🗑️ Eliminar</button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        // Cambiar tab
+        function switchView(view, evt = null) {
+            const buttons = document.querySelectorAll('.toggle-btn');
+            buttons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === view);
+            });
+
+            const adminView = document.getElementById('adminView');
+            const userView = document.getElementById('userView');
+            if (adminView) {
+                adminView.classList.toggle('active', view === 'admin');
+            }
+            if (userView) {
+                userView.classList.toggle('active', view === 'user');
+            }
+
+            const subtitle = document.getElementById('headerSubtitle');
+            if (subtitle) {
+                subtitle.textContent = view === 'admin'
+                    ? 'Panel de Administración'
+                    : 'Portal de Colaboradores';
+            }
+
+            const newSurveyBtn = document.getElementById('newSurveyBtn');
+            if (newSurveyBtn) {
+                newSurveyBtn.style.display = view === 'admin' ? 'inline-flex' : 'none';
+            }
+        }
+
+        function renderUserDashboard() {
+            const loginCard = document.getElementById('userLoginCard');
+            const dashboard = document.getElementById('userDashboard');
+            if (!loginCard || !dashboard) {
+                return;
+            }
+
+            const user = getCurrentUser();
+            const pendingInfo = document.getElementById('userPendingInfo');
+            const surveySection = document.getElementById('userSurveySection');
+            const intranetSection = document.getElementById('userIntranetSection');
+            const title = document.getElementById('userSurveyTitle');
+            const intro = document.getElementById('userSurveyIntro');
+            const feedback = document.getElementById('userSurveyFeedback');
+
+            if (feedback) {
+                feedback.textContent = '';
+                feedback.classList.remove('ok', 'error');
+            }
+
+            if (!user) {
+                loginCard.style.display = 'block';
+                dashboard.style.display = 'none';
+                return;
+            }
+
+            loginCard.style.display = 'none';
+            dashboard.style.display = 'block';
+
+            const nameEl = document.getElementById('userName');
+            if (nameEl) {
+                nameEl.textContent = user.nombre;
+            }
+
+            const pendingSurveyId = (user.encuestasAsignadas || []).find(id => {
+                return !(user.encuestasCompletadas && user.encuestasCompletadas[id]);
+            });
+
+            if (pendingSurveyId) {
+                const survey = surveys.find(s => s.id === pendingSurveyId);
+                if (pendingInfo) {
+                    pendingInfo.textContent = 'Tienes una encuesta pendiente por completar.';
+                }
+                if (surveySection) {
+                    surveySection.style.display = 'block';
+                }
+                if (intranetSection) {
+                    intranetSection.style.display = 'none';
+                }
+
+                if (survey) {
+                    if (title) {
+                        title.textContent = survey.titulo;
+                    }
+                    if (intro) {
+                        const tiempo = survey.tiempo_limite_minutos
+                            ? `${survey.tiempo_limite_minutos} minuto${survey.tiempo_limite_minutos === 1 ? '' : 's'}`
+                            : 'tiempo ilimitado';
+                        const preguntasLabel = survey.preguntas.length === 1 ? 'esta pregunta' : 'estas preguntas';
+                        intro.textContent = `Dispones de ${tiempo} para responder ${preguntasLabel}.`;
+                    }
+                    renderUserSurveyForm(survey);
+                } else {
+                    if (surveySection) {
+                        surveySection.style.display = 'none';
+                    }
+                    if (pendingInfo) {
+                        pendingInfo.textContent = 'No encontramos la encuesta asignada. Contacta al equipo de sistemas.';
+                    }
+                }
+            } else {
+                if (pendingInfo) {
+                    pendingInfo.textContent = 'No tienes encuestas pendientes. ¡Buen trabajo!';
+                }
+                if (surveySection) {
+                    surveySection.style.display = 'none';
+                }
+                if (intranetSection) {
+                    intranetSection.style.display = 'block';
+                }
+            }
+        }
+
+        function renderUserSurveyForm(survey) {
+            const container = document.getElementById('userSurveyContent');
+            if (!container) return;
+
+            const preguntas = Array.isArray(survey.preguntas) ? survey.preguntas : [];
+            container.innerHTML = `
+                <form id="userSurveyForm" data-survey-id="${survey.id}">
+                    ${preguntas.map(renderUserQuestion).join('')}
+                    <button type="submit" class="btn-primary" style="margin-top: 1.5rem;">Enviar respuestas</button>
+                </form>
+            `;
+
+            const form = document.getElementById('userSurveyForm');
+            if (form) {
+                form.addEventListener('submit', (event) => handleUserSurveySubmit(event, survey.id));
+            }
+        }
+
+        function renderUserQuestion(question, index) {
+            const name = `question-${question.id}`;
+            const options = Array.isArray(question.opciones) ? question.opciones : [];
+            let inputHtml = '';
+
+            if (question.tipo === 'multiple_choice') {
+                inputHtml = options.length
+                    ? options.map(option => `
+                        <label class="option-user">
+                            <input type="radio" name="${name}" value="${option.id}">
+                            <span>${option.texto}</span>
+                        </label>
+                    `).join('')
+                    : '<div class="question-hint">No hay opciones configuradas.</div>';
+            } else if (question.tipo === 'multiselect') {
+                inputHtml = options.length
+                    ? options.map(option => `
+                        <label class="option-user">
+                            <input type="checkbox" name="${name}" value="${option.id}">
+                            <span>${option.texto}</span>
+                        </label>
+                    `).join('')
+                    : '<div class="question-hint">No hay opciones configuradas.</div>';
+            } else if (question.tipo === 'numeric_scale') {
+                inputHtml = `
+                    <input type="number" class="form-input" name="${name}" min="${NUMERIC_SCALE_DEFAULT.min}" max="${NUMERIC_SCALE_DEFAULT.max}" step="1" placeholder="${NUMERIC_SCALE_DEFAULT.min} a ${NUMERIC_SCALE_DEFAULT.max}">
+                `;
+            } else {
+                inputHtml = `
+                    <input type="text" class="form-input" name="${name}" placeholder="Tu respuesta" autocomplete="off">
+                `;
+            }
+
+            let hint = '';
+            if (question.tipo === 'short_text' && question.validacion && VALIDATION_RULES[question.validacion]) {
+                const rule = VALIDATION_RULES[question.validacion];
+                hint = `${rule.hint} <em>(${rule.example})</em>`;
+            } else if (question.tipo === 'numeric_scale') {
+                hint = `Responde con un número entre ${NUMERIC_SCALE_DEFAULT.min} y ${NUMERIC_SCALE_DEFAULT.max}.`;
+            }
+
+            return `
+                <div class="user-question" data-question-id="${question.id}" data-question-type="${question.tipo}">
+                    <label>${index + 1}. ${question.texto}</label>
+                    ${inputHtml}
+                    ${hint ? `<div class="question-hint">${hint}</div>` : ''}
+                    <div class="error-message" data-error-for="${question.id}"></div>
+                </div>
+            `;
+        }
+
+        function handleUserSurveySubmit(event, surveyId) {
+            event.preventDefault();
+
+            const form = event.target;
+            const user = getCurrentUser();
+            const survey = surveys.find(s => s.id === surveyId);
+            const feedback = document.getElementById('userSurveyFeedback');
+
+            if (!form || !user || !survey) {
+                return;
+            }
+
+            if (feedback) {
+                feedback.textContent = '';
+                feedback.classList.remove('ok', 'error');
+            }
+
+            const respuestas = [];
+            let hasErrors = false;
+
+            survey.preguntas.forEach(question => {
+                const wrapper = form.querySelector(`[data-question-id="${question.id}"]`);
+                const errorEl = form.querySelector(`[data-error-for="${question.id}"]`);
+                if (wrapper) {
+                    wrapper.classList.remove('error');
+                }
+                if (errorEl) {
+                    errorEl.textContent = '';
+                    errorEl.classList.remove('active');
+                }
+
+                if (question.tipo === 'multiple_choice') {
+                    const selected = form.querySelector(`input[name="question-${question.id}"]:checked`);
+                    if (!selected) {
+                        hasErrors = true;
+                        if (wrapper) {
+                            wrapper.classList.add('error');
+                        }
+                        if (errorEl) {
+                            errorEl.textContent = 'Selecciona una opción.';
+                            errorEl.classList.add('active');
+                        }
+                        return;
+                    }
+                    respuestas.push({ pregunta_id: question.id, valor: selected.value });
+                } else if (question.tipo === 'multiselect') {
+                    const selected = Array.from(form.querySelectorAll(`input[name="question-${question.id}"]:checked`)).map(input => input.value);
+                    if (selected.length === 0) {
+                        hasErrors = true;
+                        if (wrapper) {
+                            wrapper.classList.add('error');
+                        }
+                        if (errorEl) {
+                            errorEl.textContent = 'Elige al menos una alternativa.';
+                            errorEl.classList.add('active');
+                        }
+                        return;
+                    }
+                    respuestas.push({ pregunta_id: question.id, valor: selected });
+                } else if (question.tipo === 'numeric_scale') {
+                    const input = form.querySelector(`input[name="question-${question.id}"]`);
+                    if (!input) {
+                        return;
+                    }
+                    input.classList.remove('input-error');
+                    const value = input.value.trim();
+                    const numberValue = Number(value);
+                    if (value === '' || Number.isNaN(numberValue)) {
+                        hasErrors = true;
+                        input.classList.add('input-error');
+                        if (wrapper) {
+                            wrapper.classList.add('error');
+                        }
+                        if (errorEl) {
+                            errorEl.textContent = 'Ingresa un número válido.';
+                            errorEl.classList.add('active');
+                        }
+                        return;
+                    }
+                    if (numberValue < NUMERIC_SCALE_DEFAULT.min || numberValue > NUMERIC_SCALE_DEFAULT.max) {
+                        hasErrors = true;
+                        input.classList.add('input-error');
+                        if (wrapper) {
+                            wrapper.classList.add('error');
+                        }
+                        if (errorEl) {
+                            errorEl.textContent = `Debe estar entre ${NUMERIC_SCALE_DEFAULT.min} y ${NUMERIC_SCALE_DEFAULT.max}.`;
+                            errorEl.classList.add('active');
+                        }
+                        return;
+                    }
+                    respuestas.push({ pregunta_id: question.id, valor: numberValue });
+                } else {
+                    const input = form.querySelector(`input[name="question-${question.id}"]`);
+                    if (!input) {
+                        return;
+                    }
+                    input.classList.remove('input-error');
+                    const value = input.value.trim();
+                    if (!value) {
+                        hasErrors = true;
+                        input.classList.add('input-error');
+                        if (wrapper) {
+                            wrapper.classList.add('error');
+                        }
+                        if (errorEl) {
+                            errorEl.textContent = 'Este campo es obligatorio.';
+                            errorEl.classList.add('active');
+                        }
+                        return;
+                    }
+
+                    if (question.validacion && VALIDATION_RULES[question.validacion]) {
+                        const rule = VALIDATION_RULES[question.validacion];
+                        if (!rule.validate(value)) {
+                            hasErrors = true;
+                            input.classList.add('input-error');
+                            if (wrapper) {
+                                wrapper.classList.add('error');
+                            }
+                            if (errorEl) {
+                                errorEl.textContent = `Ingresa un valor válido. ${rule.hint}`;
+                                errorEl.classList.add('active');
+                            }
+                            return;
+                        }
+                    }
+
+                    respuestas.push({ pregunta_id: question.id, valor: value });
+                }
+            });
+
+            if (hasErrors) {
+                if (feedback) {
+                    feedback.textContent = 'Revisa los campos marcados en rojo antes de continuar.';
+                    feedback.classList.remove('ok');
+                    feedback.classList.add('error');
+                }
+                return;
+            }
+
+            const now = new Date().toISOString();
+            if (!Array.isArray(survey.respuestas)) {
+                survey.respuestas = [];
+            }
+            survey.respuestas.push({
+                usuario_id: user.id,
+                respondido_en: now,
+                respuestas
+            });
+
+            persistSurveys();
+            renderSurveys();
+
+            if (!user.encuestasCompletadas) {
+                user.encuestasCompletadas = {};
+            }
+            user.encuestasCompletadas[surveyId] = { respondido_en: now };
+            persistUsers();
+
+            if (feedback) {
+                feedback.textContent = '¡Gracias! Tus respuestas fueron registradas.';
+                feedback.classList.remove('error');
+                feedback.classList.add('ok');
+            }
+
+            renderUserDashboard();
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById('loginEmail');
+            const passwordInput = document.getElementById('loginPassword');
+            const error = document.getElementById('loginError');
+
+            if (!emailInput || !passwordInput || !error) {
+                return;
+            }
+
+            const email = emailInput.value.trim().toLowerCase();
+            const password = passwordInput.value.trim();
+
+            error.textContent = '';
+            error.classList.remove('active');
+
+            const user = users.find(u => u.correo.toLowerCase() === email);
+            if (!user || user.contrasena !== password) {
+                error.textContent = 'Credenciales incorrectas. Verifica tu correo y contraseña.';
+                error.classList.add('active');
+                return;
+            }
+
+            setCurrentUser(user.id);
+            emailInput.value = '';
+            passwordInput.value = '';
+
+            renderUserDashboard();
+        }
+
+        function logoutUser() {
+            setCurrentUser(null);
+            const loginError = document.getElementById('loginError');
+            if (loginError) {
+                loginError.textContent = '';
+                loginError.classList.remove('active');
+            }
+            renderUserDashboard();
+        }
+
         function switchTab(tabName, evt = null) {
             const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -686,7 +1639,6 @@
             });
         }
 
-        // Abrir modal de creación
         function openCreateModal() {
             editingSurveyId = null;
             document.getElementById('modalTitle').textContent = 'Nueva Encuesta';
@@ -696,7 +1648,6 @@
             document.getElementById('surveyModal').classList.add('active');
         }
 
-        // Editar encuesta
         function editSurvey(id) {
             const survey = surveys.find(s => s.id === id);
             if (!survey) return;
@@ -709,7 +1660,8 @@
             document.getElementById('maxAttempts').value = survey.intentos_maximos || '';
             document.getElementById('timeLimit').value = survey.tiempo_limite_minutos || '';
 
-            document.getElementById('questionsList').innerHTML = '';
+            const questionsList = document.getElementById('questionsList');
+            questionsList.innerHTML = '';
             questionCounter = 0;
             survey.preguntas.forEach(q => {
                 addQuestion(q);
@@ -718,42 +1670,54 @@
             document.getElementById('surveyModal').classList.add('active');
         }
 
-        // Cerrar modal
         function closeModal() {
             document.getElementById('surveyModal').classList.remove('active');
         }
 
-        // Agregar pregunta
         function addQuestion(existingQuestion = null) {
             const qNum = ++questionCounter;
             const questionDiv = document.createElement('div');
+            const questionId = existingQuestion?.id || generateId('pregunta');
             questionDiv.className = 'question-item';
             questionDiv.id = `question-${qNum}`;
-            
+            questionDiv.dataset.questionId = questionId;
+
+            const selectedType = existingQuestion?.tipo || 'multiple_choice';
+            const selectedValidation = existingQuestion?.validacion || 'libre';
+
             questionDiv.innerHTML = `
                 <div class="question-header">
                     <span class="question-number">Pregunta ${qNum}</span>
                     <button type="button" class="btn-remove" onclick="removeQuestion(${qNum})">Eliminar</button>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="¿Cuál es tu pregunta?" 
+                    <input type="text" class="form-input" placeholder="¿Cuál es tu pregunta?"
                            value="${existingQuestion ? existingQuestion.texto : ''}" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <select class="form-select question-type" onchange="toggleOptions(${qNum})">
-                            <option value="multiple_choice" ${existingQuestion?.tipo === 'multiple_choice' ? 'selected' : ''}>Opción múltiple</option>
-                            <option value="multiselect" ${existingQuestion?.tipo === 'multiselect' ? 'selected' : ''}>Casillas múltiples</option>
-                            <option value="short_text" ${existingQuestion?.tipo === 'short_text' ? 'selected' : ''}>Respuesta corta</option>
-                            <option value="numeric_scale" ${existingQuestion?.tipo === 'numeric_scale' ? 'selected' : ''}>Escala numérica</option>
+                        <select class="form-select question-type" onchange="handleQuestionTypeChange(${qNum})">
+                            <option value="multiple_choice" ${selectedType === 'multiple_choice' ? 'selected' : ''}>Opción múltiple</option>
+                            <option value="multiselect" ${selectedType === 'multiselect' ? 'selected' : ''}>Casillas múltiples</option>
+                            <option value="short_text" ${selectedType === 'short_text' ? 'selected' : ''}>Respuesta corta</option>
+                            <option value="numeric_scale" ${selectedType === 'numeric_scale' ? 'selected' : ''}>Escala numérica</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-input" placeholder="Puntos" 
-                               value="${existingQuestion?.puntos || ''}">
+                        <input type="number" class="form-input" placeholder="Puntos"
+                               value="${existingQuestion?.puntos ?? ''}">
                     </div>
                 </div>
-                <div class="options-container" id="options-${qNum}" style="display: ${existingQuestion?.tipo === 'multiple_choice' || existingQuestion?.tipo === 'multiselect' ? 'block' : 'none'}">
+                <div class="form-group" id="validation-${qNum}" style="display: ${selectedType === 'short_text' ? 'block' : 'none'};">
+                    <label class="form-label">Validación para la respuesta</label>
+                    <select class="form-select validation-select" onchange="updateValidationHint(${qNum})">
+                        ${Object.entries(VALIDATION_RULES).map(([key, rule]) => `
+                            <option value="${key}" ${selectedValidation === key ? 'selected' : ''}>${rule.label}</option>
+                        `).join('')}
+                    </select>
+                    <div class="validation-hint" id="validation-hint-${qNum}">${VALIDATION_RULES[selectedValidation].hint} <em>${VALIDATION_RULES[selectedValidation].example}</em></div>
+                </div>
+                <div class="options-container" id="options-${qNum}" style="display: ${['multiple_choice', 'multiselect'].includes(selectedType) ? 'block' : 'none'}">
                     <div class="form-label" style="margin-top: 0.5rem;">Opciones:</div>
                     <div id="options-list-${qNum}"></div>
                     <button type="button" class="btn-add" onclick="addOption(${qNum})" style="margin-top: 0.5rem;">+ Agregar opción</button>
@@ -769,16 +1733,35 @@
             }
         }
 
-        // Remover pregunta
         function removeQuestion(qNum) {
-            document.getElementById(`question-${qNum}`).remove();
+            document.getElementById(`question-${qNum}`)?.remove();
         }
 
-        // Toggle opciones
-        function toggleOptions(qNum) {
+        function handleQuestionTypeChange(qNum) {
             const select = document.querySelector(`#question-${qNum} .question-type`);
             const optionsDiv = document.getElementById(`options-${qNum}`);
-            optionsDiv.style.display = ['multiple_choice', 'multiselect'].includes(select.value) ? 'block' : 'none';
+            const validationGroup = document.getElementById(`validation-${qNum}`);
+            const isChoice = ['multiple_choice', 'multiselect'].includes(select.value);
+
+            if (optionsDiv) {
+                optionsDiv.style.display = isChoice ? 'block' : 'none';
+            }
+
+            if (validationGroup) {
+                validationGroup.style.display = select.value === 'short_text' ? 'block' : 'none';
+                if (select.value === 'short_text') {
+                    updateValidationHint(qNum);
+                }
+            }
+        }
+
+        function updateValidationHint(qNum) {
+            const validationSelect = document.querySelector(`#question-${qNum} .validation-select`);
+            const hint = document.getElementById(`validation-hint-${qNum}`);
+            if (!validationSelect || !hint) return;
+
+            const rule = VALIDATION_RULES[validationSelect.value] || VALIDATION_RULES.libre;
+            hint.innerHTML = `${rule.hint} <em>${rule.example}</em>`;
         }
 
         const VARIANTES_OTRO = new Set(['otro', 'otra', 'otroa', 'otros', 'otras']);
@@ -802,13 +1785,16 @@
             return texto;
         }
 
-        // Agregar opción
         function addOption(qNum, existingOption = null) {
             const optionsList = document.getElementById(`options-list-${qNum}`);
+            if (!optionsList) return;
+
             const optNum = optionsList.children.length + 1;
+            const optionId = existingOption?.id || generateId('opcion');
 
             const optionDiv = document.createElement('div');
             optionDiv.className = 'option-item';
+            optionDiv.dataset.optionId = optionId;
             optionDiv.innerHTML = `
                 <input type="checkbox" class="option-radio" ${existingOption?.es_correcta ? 'checked' : ''}>
                 <input type="text" class="form-input" placeholder="Opción ${optNum}"
@@ -820,11 +1806,10 @@
             optionsList.appendChild(optionDiv);
         }
 
-        // Guardar encuesta
-        document.getElementById('surveyForm').addEventListener('submit', async (e) => {
+        document.getElementById('surveyForm').addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const formData = {
+            const baseSurvey = {
                 titulo: document.getElementById('surveyTitle').value,
                 tipo_encuesta: document.getElementById('surveyType').value,
                 puntaje_minimo: parseInt(document.getElementById('minScore').value) || null,
@@ -834,169 +1819,279 @@
             };
 
             document.querySelectorAll('.question-item').forEach(qDiv => {
-                const qInputs = qDiv.querySelectorAll('.form-input');
-                const qSelect = qDiv.querySelector('.question-type');
-                const qPoints = qDiv.querySelectorAll('input[type="number"]')[0];
-                
+                const textoPregunta = qDiv.querySelector('.form-input')?.value || '';
+                const tipoSelect = qDiv.querySelector('.question-type');
+                const puntosInput = qDiv.querySelector('input[type="number"]');
+                const validationSelect = qDiv.querySelector('.validation-select');
+
                 const question = {
-                    texto: qInputs[0].value,
-                    tipo: qSelect.value,
-                    puntos: parseInt(qPoints?.value) || null,
+                    id: qDiv.dataset.questionId || generateId('pregunta'),
+                    texto: textoPregunta,
+                    tipo: tipoSelect?.value || 'multiple_choice',
+                    puntos: puntosInput?.value ? parseInt(puntosInput.value) : null,
+                    permitir_multiple: tipoSelect?.value === 'multiselect',
+                    validacion: validationSelect?.value || null,
                     opciones: []
                 };
 
-                question.permitir_multiple = qSelect.value === 'multiselect';
-
-                if (['multiple_choice', 'multiselect'].includes(qSelect.value)) {
-                    const optionsDiv = qDiv.querySelector('.options-container');
-                    optionsDiv.querySelectorAll('.option-item').forEach(optDiv => {
+                if (['multiple_choice', 'multiselect'].includes(question.tipo)) {
+                    qDiv.querySelectorAll('.option-item').forEach(optDiv => {
+                        const texto = normalizarTextoOpcion(optDiv.querySelector('input[type="text"]').value);
                         question.opciones.push({
-                            texto: normalizarTextoOpcion(optDiv.querySelector('input[type="text"]').value),
+                            id: optDiv.dataset.optionId || generateId('opcion'),
+                            texto,
                             es_correcta: optDiv.querySelector('input[type="checkbox"]').checked
                         });
                     });
                 }
 
-                formData.preguntas.push(question);
+                if (question.tipo !== 'short_text') {
+                    question.validacion = null;
+                }
+
+                baseSurvey.preguntas.push(question);
             });
 
-            try {
-                const url = editingSurveyId 
-                    ? `${API_BASE}/encuestas/${editingSurveyId}`
-                    : `${API_BASE}/encuestas`;
-                const method = editingSurveyId ? 'PUT' : 'POST';
+            const timestamp = new Date().toISOString();
 
-                const response = await fetch(url, {
-                    method,
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
+            if (editingSurveyId) {
+                surveys = surveys.map(survey => {
+                    if (survey.id !== editingSurveyId) return survey;
+                    return {
+                        ...survey,
+                        ...baseSurvey,
+                        id: editingSurveyId,
+                        creado_en: survey.creado_en || timestamp,
+                        actualizado_en: timestamp
+                    };
                 });
-
-                if (response.ok) {
-                    closeModal();
-                    await loadSurveys();
-                    alert('Encuesta guardada exitosamente');
-                } else {
-                    alert('Error al guardar la encuesta');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error de conexión');
+                alert('Encuesta actualizada correctamente.');
+            } else {
+                surveys.push({
+                    id: generateId('encuesta'),
+                    creado_en: timestamp,
+                    actualizado_en: timestamp,
+                    respuestas: [],
+                    ...baseSurvey
+                });
+                alert('Encuesta creada correctamente.');
             }
+
+            persistSurveys();
+            renderSurveys();
+            closeModal();
         });
 
-        // Eliminar encuesta
-        async function deleteSurvey(id) {
+        function deleteSurvey(id) {
             if (!confirm('¿Estás seguro de eliminar esta encuesta?')) return;
-
-            try {
-                const response = await fetch(`${API_BASE}/encuestas/${id}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    await loadSurveys();
-                    alert('Encuesta eliminada');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error al eliminar');
-            }
+            surveys = surveys.filter(s => s.id !== id);
+            persistSurveys();
+            renderSurveys();
+            alert('Encuesta eliminada.');
         }
 
-        // Ver estadísticas
-        async function viewStats(id) {
+        function viewStats(id) {
             switchTab('stats');
 
+            const survey = surveys.find(s => s.id === id);
             const statsContent = document.getElementById('statsContent');
-            statsContent.innerHTML = '<div class="loading">Cargando estadísticas...</div>';
-
-            try {
-                const survey = surveys.find(s => s.id === id);
-                const response = await fetch(`${API_BASE}/encuestas/${id}/estadisticas`);
-                const stats = await response.json();
-
-                statsContent.innerHTML = `
-                    <div style="margin-bottom: 1.5rem;">
-                        <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">${survey.titulo}</h2>
-                        <p style="color: #6b7280;">Estadísticas en tiempo real</p>
-                    </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-card-icon icon-blue">👥</div>
-                            <div class="stat-label">Participantes</div>
-                            <div class="stat-value">${stats.total_respuestas}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-icon icon-green">🏆</div>
-                            <div class="stat-label">Promedio</div>
-                            <div class="stat-value">${stats.puntaje_promedio ? Math.round(stats.puntaje_promedio) + '%' : '-'}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-icon icon-purple">✅</div>
-                            <div class="stat-label">Aprobados</div>
-                            <div class="stat-value">${stats.tasa_aprobacion ? Math.round(stats.tasa_aprobacion) + '%' : '-'}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-icon icon-orange">⏱️</div>
-                            <div class="stat-label">Tiempo promedio</div>
-                            <div class="stat-value">${stats.duracion_promedio ? Math.round(stats.duracion_promedio) + ' min' : '-'}</div>
-                        </div>
-                    </div>
-
-                    ${stats.dificultad_preguntas.length > 0 ? `
-                        <div class="chart-section">
-                            <h3 class="chart-title">Preguntas Más Difíciles</h3>
-                            <div class="bar-chart">
-                                ${stats.dificultad_preguntas.slice(0, 5).map(([question, difficulty]) => `
-                                    <div class="bar-item">
-                                        <div class="bar-label">${question.substring(0, 30)}${question.length > 30 ? '...' : ''}</div>
-                                        <div class="bar-container">
-                                            <div class="bar-fill" style="width: ${Math.min(100, difficulty)}%">
-                                                ${Math.round(difficulty)}%
-                                            </div>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    ` : ''}
-
-                    ${stats.puntajes_por_usuario.length > 0 ? `
-                        <div class="chart-section">
-                            <h3 class="chart-title">Top Usuarios</h3>
-                            <div class="bar-chart">
-                                ${stats.puntajes_por_usuario.slice(0, 10).map(([user, score]) => `
-                                    <div class="bar-item">
-                                        <div class="bar-label">${user}</div>
-                                        <div class="bar-container">
-                                            <div class="bar-fill" style="width: ${score}%; background: linear-gradient(90deg, #10b981, #059669);">
-                                                ${Math.round(score)}%
-                                            </div>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    ` : ''}
-
-                    <button class="btn-sm" onclick="loadSurveys(); switchTab('surveys');" style="margin-top: 1rem;">
-                        ← Volver a encuestas
-                    </button>
-                `;
-            } catch (error) {
-                console.error('Error loading stats:', error);
-                statsContent.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📊</div>
-                        <p>No hay estadísticas disponibles aún</p>
-                    </div>
-                `;
+            if (!survey) {
+                statsContent.innerHTML = '<div class="empty-state"><p>No se encontró la encuesta seleccionada.</p></div>';
+                return;
             }
+
+            const totalPreguntas = survey.preguntas.length;
+            const counts = survey.preguntas.reduce((acc, question) => {
+                acc[question.tipo] = (acc[question.tipo] || 0) + 1;
+                return acc;
+            }, {});
+            const shortTextQuestions = survey.preguntas.filter(q => q.tipo === 'short_text');
+
+            const tipoResumen = [
+                ['multiple_choice', 'Opción múltiple'],
+                ['multiselect', 'Casillas múltiples'],
+                ['short_text', 'Respuesta corta'],
+                ['numeric_scale', 'Escala numérica']
+            ].map(([key, label]) => `
+                <div class="bar-item">
+                    <div class="bar-label">${label}</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: ${totalPreguntas ? (counts[key] || 0) / totalPreguntas * 100 : 0}%">
+                            ${counts[key] || 0}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const validacionesHTML = shortTextQuestions.length > 0
+                ? shortTextQuestions.map((question, index) => {
+                    const rule = VALIDATION_RULES[question.validacion] || VALIDATION_RULES.libre;
+                    const inputId = `test-${survey.id}-${index}`;
+                    const resultId = `validation-result-${survey.id}-${index}`;
+                    return `
+                        <div class="stat-card">
+                            <div class="stat-card-icon icon-blue">📝</div>
+                            <div class="stat-label">${question.texto}</div>
+                            <div class="stat-value">${rule.label}</div>
+                            <div class="validation-hint">${rule.hint} <em>${rule.example}</em></div>
+                            <div class="checkbox-group" style="margin-top: 0.75rem;">
+                                <input type="text" class="form-input" id="${inputId}" placeholder="Ingresa un valor de prueba">
+                                <button type="button" class="btn-sm" onclick="testValidation('${survey.id}', ${index})">Probar</button>
+                            </div>
+                            <div class="validation-result" id="${resultId}">Ingresa un valor para comprobar la regla.</div>
+                        </div>
+                    `;
+                }).join('')
+                : `
+                    <div class="empty-state" style="padding: 2rem 1rem;">
+                        <div class="empty-state-icon" style="font-size: 2rem;">ℹ️</div>
+                        <p>No hay preguntas de respuesta corta con validaciones configuradas.</p>
+                    </div>
+                `;
+
+            statsContent.innerHTML = `
+                <div style="margin-bottom: 1.5rem;">
+                    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">${survey.titulo}</h2>
+                    <p style="color: #6b7280;">Resumen local de la encuesta</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon icon-blue">📄</div>
+                        <div class="stat-label">Total de preguntas</div>
+                        <div class="stat-value">${totalPreguntas}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon icon-green">🔐</div>
+                        <div class="stat-label">Validaciones activas</div>
+                        <div class="stat-value">${shortTextQuestions.filter(q => q.validacion).length}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon icon-purple">🕒</div>
+                        <div class="stat-label">Tiempo límite</div>
+                        <div class="stat-value">${survey.tiempo_limite_minutos ? survey.tiempo_limite_minutos + ' min' : 'Sin límite'}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon icon-orange">📊</div>
+                        <div class="stat-label">Tipo principal</div>
+                        <div class="stat-value">${formatType(survey.tipo_encuesta)}</div>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <h3 class="chart-title">Distribución por tipo de pregunta</h3>
+                    <div class="bar-chart">${tipoResumen}</div>
+                </div>
+
+                <div class="chart-section">
+                    <h3 class="chart-title">Validaciones configuradas</h3>
+                    ${validacionesHTML}
+                </div>
+
+                <button class="btn-sm" onclick="switchTab('surveys');" style="margin-top: 1rem;">
+                    ← Volver a encuestas
+                </button>
+            `;
         }
 
-        // Formatear tipo de encuesta
+        function testValidation(surveyId, questionIndex) {
+            const survey = surveys.find(s => s.id === surveyId);
+            if (!survey) return;
+
+            const question = survey.preguntas.filter(q => q.tipo === 'short_text')[questionIndex];
+            if (!question) return;
+
+            const inputId = `test-${survey.id}-${questionIndex}`;
+            const resultId = `validation-result-${survey.id}-${questionIndex}`;
+            const input = document.getElementById(inputId);
+            const result = document.getElementById(resultId);
+
+            if (!input || !result) return;
+
+            const value = input.value;
+            const rule = VALIDATION_RULES[question.validacion] || VALIDATION_RULES.libre;
+            const isValid = rule.validate(value);
+
+            result.textContent = isValid
+                ? '✅ El valor cumple con la validación.'
+                : '❌ El valor no cumple con la validación seleccionada.';
+            result.classList.toggle('ok', isValid);
+            result.classList.toggle('error', !isValid);
+        }
+
+        function exportData() {
+            const blob = new Blob([JSON.stringify(surveys, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'encuestas-locales.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'application/json';
+            input.addEventListener('change', (event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const parsed = JSON.parse(e.target?.result);
+                        if (!Array.isArray(parsed)) {
+                            throw new Error('El archivo no contiene un arreglo de encuestas');
+                        }
+                        surveys = parsed;
+                        surveys.forEach(s => {
+                            if (!Array.isArray(s.respuestas)) {
+                                s.respuestas = [];
+                            }
+                        });
+                        persistSurveys();
+                        renderSurveys();
+                        renderUserDashboard();
+                        alert('Datos importados correctamente.');
+                    } catch (error) {
+                        alert('No se pudo importar el archivo: ' + error.message);
+                    }
+                };
+                reader.readAsText(file, 'utf-8');
+            });
+            input.click();
+        }
+
+        function resetData() {
+            if (!confirm('¿Deseas restablecer los datos de ejemplo? Perderás los cambios actuales.')) return;
+            surveys = getDefaultData();
+            users = getDefaultUsers();
+            setCurrentUser(null);
+            persistUsers();
+            persistSurveys();
+            renderSurveys();
+            renderUserDashboard();
+            alert('Datos de ejemplo restaurados.');
+        }
+
+        function clearAllData() {
+            if (!confirm('Esta acción eliminará todas las encuestas guardadas. ¿Continuar?')) return;
+            surveys = [];
+            users = [];
+            setCurrentUser(null);
+            localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(USERS_STORAGE_KEY);
+            localStorage.removeItem(CURRENT_USER_KEY);
+            updateSurveyCount();
+            updateStorageStatus();
+            renderSurveys();
+            renderUserDashboard();
+            alert('Se eliminó toda la información almacenada.');
+        }
+
         function formatType(type) {
             const types = {
                 'opinion': 'Opinión',
@@ -1006,7 +2101,6 @@
             return types[type] || type;
         }
 
-        // Inicializar al cargar
         init();
     </script>
 </body>
