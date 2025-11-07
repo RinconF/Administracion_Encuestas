@@ -1,4 +1,4 @@
-# Administración de Encuestas (modo sin API)
+# Administración de Encuestas
 
 Aplicación totalmente frontal construida con HTML, CSS y JavaScript para administrar encuestas sin depender de un backend ni de conexiones externas. Toda la información se guarda en el navegador mediante `localStorage`, lo que permite crear, editar y eliminar cuestionarios incluso sin conexión.
 
@@ -27,10 +27,6 @@ Solo necesitas un navegador moderno. No se requiere Python, Node ni servidores a
 static/
 └── index.html  # Aplicación completa con estilos y lógica en un solo archivo
 ```
-
-## Personalización
-
-Si quieres adaptar la apariencia o extraer la lógica a módulos independientes, puedes separar los estilos y scripts en carpetas `css/` y `js/`. El código está comentado para ayudarte a identificar los puntos clave a modificar.
 
 ## Licencia
 
