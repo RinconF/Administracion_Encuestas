@@ -8,7 +8,6 @@ Aplicación totalmente frontal construida con HTML, CSS y JavaScript para admini
 - Editor visual con soporte para opción múltiple, casillas múltiples, respuesta corta y escala numérica.
 - Validaciones configurables para preguntas de respuesta corta (cédula, teléfono, fecha, correo electrónico o texto libre).
 - Estadísticas locales que resumen el número de preguntas, distribución por tipo y validaciones activas.
-- Portal de usuarios finales con inicio de sesión simulado y presentación obligatoria de encuestas antes de habilitar la intranet.
 - Persistencia automática en el navegador sin APIs externas.
 
 ## Requisitos
@@ -18,18 +17,9 @@ Solo necesitas un navegador moderno. No se requiere Python, Node ni servidores a
 ## Cómo usarlo
 
 1. Abre el archivo `static/index.html` directamente en tu navegador preferido.
-2. Usa el selector superior para alternar entre la vista **Administrador** y **Usuario**.
-3. En el modo administrador puedes crear, editar o eliminar encuestas con el botón **“Nueva Encuesta”**.
-4. En el modo usuario inicia sesión con las credenciales de ejemplo y responde la encuesta asignada; la intranet se desbloquea automáticamente cuando no quedan cuestionarios pendientes.
-5. Cada encuesta se guarda automáticamente en `localStorage`; puedes restablecer los datos desde la pestaña **Configuración** si deseas comenzar de cero.
-6. Las validaciones de respuesta corta se guardan con cada pregunta para que puedas aplicarlas después en tus propios formularios o exportaciones.
-
-## Acceso de demostración
-
-- **Correo:** `ana@empresa.com`
-- **Contraseña:** `123456`
-
-Puedes agregar más usuarios editando la sección correspondiente en `index.html` o importando un archivo con tus propias encuestas y asignaciones.
+2. Utiliza el botón **“Nueva Encuesta”** para crear cuestionarios.
+3. Cada encuesta se guarda automáticamente en `localStorage`; puedes restablecer los datos desde la pestaña **Configuración** si deseas comenzar de cero.
+4. Las validaciones de respuesta corta se guardan con cada pregunta para que puedas aplicarlas después en tus propios formularios o exportaciones.
 
 ## Estructura del proyecto
 
