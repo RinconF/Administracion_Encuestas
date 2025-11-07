@@ -1,114 +1,47 @@
-# Administración de Encuestas
+# Administración de Encuestas (modo sin API)
 
-Proyecto de referencia construido en **Python** utilizando **FastAPI** para crear un panel administrable de encuestas con validación de respuestas correctas y estadísticas globales e individuales. Toda la información se almacena en una base de datos virtual en memoria, ideal para pruebas rápidas dentro de VS Code sin necesidad de servicios externos.
+Aplicación totalmente frontal construida con HTML, CSS y JavaScript para administrar encuestas sin depender de un backend ni de conexiones externas. Toda la información se guarda en el navegador mediante `localStorage`, lo que permite crear, editar y eliminar cuestionarios incluso sin conexión.
 
 ## Características principales
 
-- Creación, edición y eliminación de encuestas de tipo opinión, evaluación o mixtas.
-- Editor de preguntas con soporte para opción múltiple, casillas múltiples, respuesta corta y escala numérica.
-- Validación automática de respuestas correctas y asignación de puntajes para encuestas evaluativas.
-- Registro de respuestas de participantes y cálculo de puntaje individual según el tipo de pregunta.
-- Estadísticas consolidadas: promedio de puntajes, tasa de aprobación, ranking por usuario, dificultad por pregunta y duración promedio.
-- API lista para integrar con un frontend en React como el mockup proporcionado o cualquier otro cliente.
+- Panel administrativo para gestionar encuestas de opinión, evaluación o mixtas.
+- Editor visual con soporte para opción múltiple, casillas múltiples, respuesta corta y escala numérica.
+- Validaciones configurables para preguntas de respuesta corta (cédula, teléfono, fecha, correo electrónico o texto libre).
+- Estadísticas locales que resumen el número de preguntas, distribución por tipo y validaciones activas.
+- Portal de usuarios finales con inicio de sesión simulado y presentación obligatoria de encuestas antes de habilitar la intranet.
+- Persistencia automática en el navegador sin APIs externas.
 
 ## Requisitos
 
-- Python 3.10 o superior
-- Pipenv o pip
+Solo necesitas un navegador moderno. No se requiere Python, Node ni servidores adicionales.
 
-Instala las dependencias con:
+## Cómo usarlo
 
-```bash
-pip install -r requirements.txt
+1. Abre el archivo `static/index.html` directamente en tu navegador preferido.
+2. Usa el selector superior para alternar entre la vista **Administrador** y **Usuario**.
+3. En el modo administrador puedes crear, editar o eliminar encuestas con el botón **“Nueva Encuesta”**.
+4. En el modo usuario inicia sesión con las credenciales de ejemplo y responde la encuesta asignada; la intranet se desbloquea automáticamente cuando no quedan cuestionarios pendientes.
+5. Cada encuesta se guarda automáticamente en `localStorage`; puedes restablecer los datos desde la pestaña **Configuración** si deseas comenzar de cero.
+6. Las validaciones de respuesta corta se guardan con cada pregunta para que puedas aplicarlas después en tus propios formularios o exportaciones.
+
+## Acceso de demostración
+
+- **Correo:** `ana@empresa.com`
+- **Contraseña:** `123456`
+
+Puedes agregar más usuarios editando la sección correspondiente en `index.html` o importando un archivo con tus propias encuestas y asignaciones.
+
+## Estructura del proyecto
+
+```
+static/
+└── index.html  # Aplicación completa con estilos y lógica en un solo archivo
 ```
 
-## Cómo ejecutar el servidor
+## Personalización
 
-Desde la raíz del repositorio ejecuta:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-El servidor quedará disponible en `http://127.0.0.1:8000` con la documentación interactiva en `http://127.0.0.1:8000/docs`.
-
-## Flujos principales de la API
-
-### 1. Crear una nueva encuesta
-
-`POST /encuestas`
-
-```json
-{
-  "titulo": "Evaluación Trimestral Q4",
-  "tipo_encuesta": "mixed",
-  "puntaje_minimo": 70,
-  "intentos_maximos": 3,
-  "tiempo_limite_minutos": 30,
-  "preguntas": [
-    {
-      "texto": "¿Cómo calificarías nuestro servicio?",
-      "tipo": "short_text",
-      "opciones": []
-    },
-    {
-      "texto": "¿Cuál es la capital de Francia?",
-      "tipo": "multiple_choice",
-      "puntos": 10,
-      "opciones": [
-        {"texto": "París", "es_correcta": true},
-        {"texto": "Londres"},
-        {"texto": "Berlín"},
-        {"texto": "Madrid"}
-      ]
-    }
-  ]
-}
-```
-
-### 2. Registrar la respuesta de un colaborador
-
-`POST /encuestas/{encuesta_id}/respuestas`
-
-```json
-{
-  "usuario_id": "colaborador-1",
-  "respuestas": [
-    {
-      "pregunta_id": "<id-pregunta-opinion>",
-      "texto_libre": "Muy buen servicio"
-    },
-    {
-      "pregunta_id": "<id-pregunta-quiz>",
-      "opciones_seleccionadas": ["<id-opcion-paris>"]
-    }
-  ]
-}
-```
-
-### 3. Consultar estadísticas en tiempo real
-
-`GET /encuestas/{encuesta_id}/estadisticas`
-
-Respuesta de ejemplo:
-
-```json
-{
-  "total_respuestas": 150,
-  "puntaje_promedio": 82.0,
-  "tasa_aprobacion": 90.0,
-  "puntajes_por_usuario": [["colaborador-10", 95.0]],
-  "dificultad_preguntas": [["¿Cuál es la capital de Francia?", 12.0]],
-  "duracion_promedio": 18.3
-}
-```
-
-## Próximos pasos sugeridos
-
-- Conectar este backend con el mockup en React usando fetch/axios para administrar encuestas desde el navegador.
-- Persistir la información en una base de datos real (PostgreSQL, MySQL) utilizando SQLModel o SQLAlchemy cuando sea necesario.
-- Añadir autenticación y roles (administrador, colaborador) para controlar el acceso.
+Si quieres adaptar la apariencia o extraer la lógica a módulos independientes, puedes separar los estilos y scripts en carpetas `css/` y `js/`. El código está comentado para ayudarte a identificar los puntos clave a modificar.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia MIT. Úsalo libremente como punto de partida para tus propias soluciones de encuestas internas.
+Este proyecto se distribuye bajo la licencia MIT. Úsalo como base para tus propias soluciones de encuestas que funcionen sin API.
