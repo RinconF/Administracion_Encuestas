@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión | Sistema de Encuestas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <main class="login-wrapper">
+        <section class="login-card">
+            <header class="login-header">
+                <h1>Sistema de Encuestas</h1>
+                <p>Accede con tus credenciales corporativas para continuar.</p>
+            </header>
+            <form id="loginForm" class="login-form" novalidate>
+                <div class="form-group">
+                    <label for="loginEmail">Correo electrónico</label>
+                    <input type="email" id="loginEmail" name="loginEmail" placeholder="nombre@empresa.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" name="loginPassword" placeholder="••••••" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-primary">Ingresar</button>
+                <p id="loginError" class="error-message" role="alert"></p>
+            </form>
+            <footer class="login-footer">
+                <a href="index.html">Volver al panel</a>
+            </footer>
+        </section>
+    </main>
+    <script src="js/login.js" defer></script>
+</body>
+</html>
